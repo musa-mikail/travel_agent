@@ -9,7 +9,25 @@ A Streamlit web application that helps users plan holidays using an AI agent. Th
 - **Environment-based configuration**: Secure API keys and settings via `.env`.
 
 ## Getting Started
+## AI Model Integration
 
+This app uses the [OpenRouter API](https://openrouter.ai/) to access advanced Large Language Models (LLMs), such as GPT-4o, for generating travel recommendations and itineraries. The API key and base URL are configured via the `.env` file.
+
+### How it works
+
+- The `DestinationPlanner` and `IteneraryMaker` agents send user preferences to the OpenRouter API.
+- The LLM processes the input and returns personalized city suggestions and itineraries.
+- Responses are streamed and displayed in real time within the Streamlit interface.
+
+### Requirements
+
+- You must obtain an OpenRouter API key and set it in your `.env` file:
+  ```
+  OPENROUTER_API_KEY=your_openrouter_api_key
+  OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
+  ```
+
+For more details, see [`app/agents.py`](app/agents.py) and [`app/openrouter.py`](app/openrouter.py).
 ### Prerequisites
 
 - Python 3.12+
