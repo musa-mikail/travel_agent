@@ -1,7 +1,9 @@
 import streamlit as st
-from .agents import destination_planning
+from agents import DestinationPlanner, IteneraryMaker
 
-
+DestinationPlanner = DestinationPlanner()
+IteneraryMaker = IteneraryMaker()
+st.session_state.messages = []
 st.title(":green[_My first Streamlit Application_]:rocket:")
 st.write("This is a simple application build by :blue[Musa Mikail] that help \
          You plan a holiday using an AI agent.\
@@ -15,7 +17,12 @@ st.write("Once you are done inputing your data, Please click button below to\
           begin....")
 
 if st.button("Lets begin"):
-    st.write("Planning your holiday now....")
-    st.write(":Blus[Starting with Planning the whole trip ....]")
-    response = destination_planning(interests, budget, dates_start, dates_end)
+    st.write(":blue[I will start by identifying cities relevant\
+              to your interests...]")
+    response = DestinationPlanner.destination_planning(interests, budget, dates_start, dates_end)
+    st.session_state.messages.append({"role": "user", "content": response})
+    st.write(":blue[Now I will generate iteniraries for you to \
+             make the best of your stay at each location...]")
+    response = None
+    response = IteneraryMaker.itenerary_maker(response, interests, budget, dates_start, dates_end)
     st.session_state.messages.append({"role": "user", "content": response})
