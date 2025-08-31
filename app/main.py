@@ -4,10 +4,10 @@ from agents import DestinationPlanner, IteneraryMaker
 DestinationPlanner = DestinationPlanner()
 IteneraryMaker = IteneraryMaker()
 st.session_state.messages = []
-st.title(":green[_My first Streamlit Application_]:rocket:")
-st.write("This is a simple application build by :blue[Musa Mikail] that help \
-         You plan a holiday using an AI agent.\
-          Provide your preferences below and allow the agent to serve you.")
+st.title(":green[_A first stab at creating an intelligent Agent!!!_]:rocket:")
+st.write("This is a simple application built by :blue[Musa Mikail] that helps \
+         you plan a holiday using an Automnomous Agent")
+st.write("Provide your preferences below and allow the agent to serve you.")
 interests = st.text_input("Enter your interests (e.g food,beaches, culture,\
                            etc) here separated by comma:")
 budget = st.text_input("Enter your budget here in USD:")

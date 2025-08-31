@@ -8,8 +8,8 @@ load_dotenv()
 
 # gets API Key from environment variables
 client = OpenAI(
-    base_url=getenv("OPENROUTER_BASE_URL"),
-    api_key=getenv("OPENROUTER_API_KEY"),
+    base_url=st.secrets["OPENROUTER_BASE_URL"],
+    api_key=st.secrets["OPENROUTER_API_KEY"],
 )
 
 model = "google/gemma-3n-e4b-it:free"
@@ -34,10 +34,6 @@ class DestinationPlanner():
         with st.chat_message("user"):
             print("----- streaming request -----")
             stream = client.chat.completions.create(
-                extra_headers={
-                    "HTTP-Referer": getenv("APP_URL"),
-                    "X-Title": getenv("APP_TITLE"),
-                },
                 model=model,
                 messages=[
                     {
@@ -65,10 +61,6 @@ class IteneraryMaker():
         with st.chat_message("user"):
             print("----- streaming request -----")
             stream = client.chat.completions.create(
-                extra_headers={
-                    "HTTP-Referer": getenv("APP_URL"),
-                    "X-Title": getenv("APP_TITLE"),
-                },
                 model=model,
                 messages=[
                     {
